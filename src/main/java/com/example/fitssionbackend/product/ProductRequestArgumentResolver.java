@@ -23,17 +23,23 @@ public class ProductRequestArgumentResolver implements HandlerMethodArgumentReso
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
-        List<Integer> category = Arrays.stream(request.getParameter("category").split(","))
-                .map(Integer::parseInt)
-                .toList();
+
+        String categoryParam = request.getParameter("category");
         String genderParam = request.getParameter("gender");
         String sortParam = request.getParameter("sort");
+        String pageParam = request.getParameter("page");
+
+        List<Integer> category = categoryParam == null ? List.of() : Arrays.stream(categoryParam.split(","))
+                .map(Integer::parseInt)
+                .toList();
         int gender = genderParam == null ? 0 : Integer.parseInt(genderParam);
         int sort = sortParam == null ? 0 : Integer.parseInt(sortParam);
+        int page = pageParam == null ? 0 : Integer.parseInt(pageParam);
         return ProductRequestDto.builder()
                 .category(category)
                 .gender(gender)
                 .sort(sort)
+                .page(page)
                 .build();
     }
 }
