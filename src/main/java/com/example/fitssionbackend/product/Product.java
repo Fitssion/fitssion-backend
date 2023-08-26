@@ -24,7 +24,9 @@ public class Product extends BaseTimeEntity {
 
     private String link;
 
-    private String image;
+    private String imgSrc;
+
+    private Integer gender; // 0 : 공용, 1 : 남, 2 : 여
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
