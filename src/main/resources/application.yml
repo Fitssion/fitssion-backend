@@ -1,0 +1,22 @@
+# DB
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/fitssion?serverTimezone=UTC&characterEncoding=UTF-8
+    username: hunseong
+    password: 1234
+
+  # JPA
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+
+# Log
+logging:
+  level:
+    com.example.fitssionbackend: debug
