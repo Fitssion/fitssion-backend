@@ -1,10 +1,9 @@
-package com.example.fitssionbackend.product;
+package com.example.fitssionbackend.product.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 
 import java.util.List;
-
 
 @Builder
 @Getter

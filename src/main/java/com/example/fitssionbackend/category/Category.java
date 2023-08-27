@@ -1,6 +1,7 @@
 package com.example.fitssionbackend.category;
 
 import com.example.fitssionbackend.BaseTimeEntity;
+import com.example.fitssionbackend.util.CategoryType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,6 +9,10 @@ import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -54,4 +59,34 @@ public class Category extends BaseTimeEntity {
 
     private Boolean clean; // 깔끔한
 
+    public double[] getCategoryVector() {
+        double[] vector = new double[18];
+        try {
+            int idx = 0;
+            for (Field field : this.getClass().getDeclaredFields()) {
+                if (field.getName().equals("id")) continue;
+                Boolean value = (Boolean) field.get(this);
+                vector[idx++] = value ? 1 : 0;
+            }
+            return vector;
+        } catch (IllegalAccessException e) {
+            return vector;
+        }
+    }
+
+    public List<String> getCategoryId() {
+        ArrayList<String> categoryId = new ArrayList<>();
+        try {
+            for (Field field : this.getClass().getDeclaredFields()) {
+                if (field.getName().equals("id")) continue;
+                Boolean isTrue = (Boolean) field.get(this);
+                if (isTrue) {
+                    categoryId.add(CategoryType.valueOf(field.getName().toUpperCase()).getCategoryName());
+                }
+            }
+            return categoryId;
+        } catch (IllegalAccessException e) {
+            return categoryId;
+        }
+    }
 }

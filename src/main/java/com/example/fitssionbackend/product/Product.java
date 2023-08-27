@@ -2,6 +2,7 @@ package com.example.fitssionbackend.product;
 
 import com.example.fitssionbackend.BaseTimeEntity;
 import com.example.fitssionbackend.category.Category;
+import com.example.fitssionbackend.util.CosineSimilarity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -31,4 +32,10 @@ public class Product extends BaseTimeEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    public double getCosineSimilarity(Product target) {
+        double[] targetVector = target.getCategory().getCategoryVector();
+        double[] curVector = this.getCategory().getCategoryVector();
+        return CosineSimilarity.cosineSimilarity(targetVector, curVector);
+    }
 }

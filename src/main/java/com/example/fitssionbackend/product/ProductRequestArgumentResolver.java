@@ -1,5 +1,7 @@
 package com.example.fitssionbackend.product;
 
+import com.example.fitssionbackend.product.dto.ProductRequest;
+import com.example.fitssionbackend.product.dto.ProductRequestDto;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;

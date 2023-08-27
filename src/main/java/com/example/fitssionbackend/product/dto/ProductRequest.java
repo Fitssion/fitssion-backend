@@ -1,4 +1,4 @@
-package com.example.fitssionbackend.product;
+package com.example.fitssionbackend.product.dto;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
