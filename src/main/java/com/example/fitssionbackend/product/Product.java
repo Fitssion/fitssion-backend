@@ -8,6 +8,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
@@ -35,7 +37,13 @@ public class Product extends BaseTimeEntity {
 
     public double getCosineSimilarity(Product target) {
         double[] targetVector = target.getCategory().getCategoryVector();
-        double[] curVector = this.getCategory().getCategoryVector();
+        double[] curVector = this.category.getCategoryVector();
+        return CosineSimilarity.cosineSimilarity(targetVector, curVector);
+    }
+
+    public double getCosineSimilarity(List<Integer> target) {
+        double[] targetVector = CosineSimilarity.integerListToDoubleArray(target);
+        double[] curVector = this.category.getCategoryVector();
         return CosineSimilarity.cosineSimilarity(targetVector, curVector);
     }
 }

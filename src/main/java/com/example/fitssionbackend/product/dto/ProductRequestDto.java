@@ -10,6 +10,5 @@ import java.util.List;
 public class ProductRequestDto {
     private List<Integer> category;
     private Integer gender;
-    private Integer sort;
     private Integer page;
 }

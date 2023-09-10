@@ -1,6 +1,18 @@
 package com.example.fitssionbackend.util;
 
+import java.util.List;
+
 public class CosineSimilarity {
+
+    public static double[] integerListToDoubleArray(List<Integer> target) {
+        double[] vector = new double[18];
+        for (int i = 0; i < 18; i++) {
+            if (target.contains(i)) {
+                vector[i] = 1;
+            }
+        }
+        return vector;
+    }
 
     public static Double cosineSimilarity(double[] a, double[] b) {
         if (a == null || b == null || a.length < 1 || b.length < 1 || a.length != b.length)
