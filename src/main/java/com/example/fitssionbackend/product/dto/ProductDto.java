@@ -5,8 +5,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.List;
-
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
 public class ProductDto {
@@ -14,7 +12,7 @@ public class ProductDto {
     private String name;
     private String seller;
     private Integer price;
-    private List<String> categoryId;
+    private String categoryId;
     private String imgSrc;
     private String gender;
     private String link;
@@ -25,7 +23,7 @@ public class ProductDto {
                 .name(product.getName())
                 .seller(product.getSeller())
                 .price(product.getPrice())
-                .categoryId(product.getCategory().getCategoryId())
+                .categoryId(product.getCategory().getCategoryId().get(0))
                 .imgSrc(product.getImgSrc())
                 .gender(product.getGender() == 0 ? "남여공용" : product.getGender() == 1 ? "남" : "여")
                 .link(product.getLink())
