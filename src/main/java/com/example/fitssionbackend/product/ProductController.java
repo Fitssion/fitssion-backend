@@ -15,11 +15,13 @@ public class ProductController {
 
     private final ProductService productService;
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity<ProductListDto> getProductList(@ProductRequest ProductRequestDto request) {
         return ResponseEntity.ok(productService.getProductList(request));
     }
 
+    @CrossOrigin
     @GetMapping("{productId}")
     public ResponseEntity<ProductDetailResponseDto> getProductDetail(@PathVariable Long productId) {
         return ResponseEntity.ok(productService.getProductDetail(productId));
